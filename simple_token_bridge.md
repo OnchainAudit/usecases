@@ -10,16 +10,16 @@ sequenceDiagram
 	actor O as Bridge Operator
 	O->>V: Register Trusted Auditor Key
 	U->>+B: Register Token with Audit
-	Note over B,V: Veras much as possibleify that the audit valid for the token<br>and verify the signature 
+	Note over B,V: Verify as much as possible that the audit is valid for the token<br>and verify the signature 
 	B->>+V: submitAudit(SignedAuditSummary audit, address token)
-	V-->>V: Check that the audit is from trusted auditor
+	V-->>V: Check that the audit is from a trusted auditor
 	V-->>-B: bool verified
 	Note over B,V: Check that ERC-1155 is supported
 	B->>+V: verifyStandardCheck(uint ercNum, address token)
 	V-->>V: Lookup supported ERCs on the audit
 	V-->>-B: bool supported
 	B-->-U: Registration Response
-	Note over B,V: Enable the token for bridging
+	Note over B,V: Authorize the token for bridging
 	O->>B: Activate Token
 	U->>B: Bridge Token
 	
